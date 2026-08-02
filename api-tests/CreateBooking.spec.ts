@@ -32,7 +32,6 @@ test.describe('Booking API', () => {
 
     expect(response.status()).toBe(200);
     const responseBody = await response.json();
-    console.log('Response Body:', responseBody);
     expect(Number.isInteger(responseBody.bookingid)).toBe(true);
     expect(responseBody.booking.firstname).toBe(firstname);
     expect(responseBody.booking.lastname).toBe(lastname);
