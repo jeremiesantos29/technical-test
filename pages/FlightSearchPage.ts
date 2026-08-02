@@ -1,12 +1,12 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from './BasePage.js';
 
-export class FlightSearchPage {
-  private readonly page: Page;
+export class FlightSearchPage extends BasePage {
   readonly flightOriginValue: Locator;
   readonly flightDestinationValue: Locator;
   
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.flightOriginValue = page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight origin input"]//div[contains(@class,"item-value")]');
     this.flightDestinationValue = page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight destination input"]//div[contains(@class,"item-value")]');
   }

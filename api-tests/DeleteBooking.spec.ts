@@ -7,8 +7,9 @@ test.describe('Booking API', () => {
   let authApi: AuthApi;
 
   let createBookingResponse: any;
-  let bookingId: string;
+
   let authToken: string;
+  let bookingId: string;
 
   test.beforeAll(async ({ request }) => {
     authApi = new AuthApi(request);

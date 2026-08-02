@@ -1,17 +1,25 @@
 import { test, expect } from '@playwright/test';
+import { BookingApi } from '../pages/api/BookingApi.js';
 import { AuthApi } from '../pages/api/AuthApi.js';
 
 test.describe('Booking API', () => {
+  let bookingApi: BookingApi;
   let authApi: AuthApi;
-  let authToken: string;
 
+  let createBookingResponse: any;
+
+  let authToken: string;
+  let bookingId: string;
+  
   test.beforeAll(async ({ request }) => {
     authApi = new AuthApi(request);
+    bookingApi = new BookingApi(request);
+    createBookingResponse = await bookingApi.createBooking();
     authToken = await authApi.createToken();
   });
 
   test('UpdateBooking', async ({ request }) => {
-    const bookingId = 1012;
+    bookingId = createBookingResponse.bookingid;
     const url = `https://restful-booker.herokuapp.com/booking/${bookingId}`;
     const headers = {
       'Content-Type': 'application/json',

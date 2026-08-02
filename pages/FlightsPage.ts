@@ -1,7 +1,7 @@
 import { Page, Locator, expect } from '@playwright/test';
+import { BasePage } from './BasePage.js'
 
-export class FlightsPage {
-  private readonly page: Page;
+export class FlightsPage extends BasePage {
   readonly originInput: Locator;
   readonly originList: Locator;
   readonly originRemoveListButton: Locator;
@@ -18,7 +18,7 @@ export class FlightsPage {
   readonly flightSearchDialogMessage: Locator;
   
   constructor(page: Page) {
-    this.page = page;
+    super(page);
     this.originInput = page.locator('//input[@aria-label="Origin location"]');
     this.originList = page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]');
     this.originRemoveListButton = page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]//div[@aria-label="Remove value"]');
@@ -33,10 +33,6 @@ export class FlightsPage {
     this.searchButton = page.locator('//button[@aria-label="Search"]');
 
     this.flightSearchDialogMessage = page.locator('div[role="dialog"] div[class*="content"] ol');
-  }
-
-  async navigateToCheapFlights() {
-    await this.page.goto('https://www.cheapflights.com.au/');
   }
 
   async removeFlightOrigin() {

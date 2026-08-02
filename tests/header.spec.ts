@@ -1,15 +1,12 @@
 import { test, expect } from '@playwright/test';
-import { FlightsPage } from '../pages/FlightsPage.js';
 import { Headers } from '../pages/Headers.js';
 
 test.describe('Cheapflights Homepage Header Validation', () => {
   let headers: Headers;
-  let flightsPage: FlightsPage;
 
   test.beforeEach(async ({ page }) => {
     headers = new Headers(page);
-    flightsPage = new FlightsPage(page);
-    await flightsPage.navigateToCheapFlights();
+    await headers.navigateToCheapFlights();
   });
 
   test('Validate website logo is visible', async () => {
