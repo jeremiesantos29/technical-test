@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { BookingApi } from '../pages/api/BookingApi.js';
-import { AuthApi } from '../pages/api/AuthApi.js';
+import { BookingApi } from '../pages/api/BookingApi';
+import { AuthApi } from '../pages/api/AuthApi';
 
 test.describe('Booking API', () => {
   let bookingApi: BookingApi;

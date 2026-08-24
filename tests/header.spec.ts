@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { Headers } from '../pages/Headers.js';
+import { Headers } from '../pages/Headers';
 
 test.describe('Cheapflights Homepage Header Validation', () => {
   let headers: Headers;

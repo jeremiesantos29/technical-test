@@ -1,5 +1,5 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage.js'
+import { BasePage } from './BasePage'
 
 export class FlightsPage extends BasePage {
   readonly originInput: Locator;

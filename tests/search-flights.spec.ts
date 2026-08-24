@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { FlightsPage } from '../pages/FlightsPage.js';
-import { FlightSearchPage } from '../pages/FlightSearchPage.js';
+import { FlightsPage } from '../pages/FlightsPage';
+import { FlightSearchPage } from '../pages/FlightSearchPage';
 
 test.describe('Search Flights', () => {
   let flightsPage: FlightsPage;
