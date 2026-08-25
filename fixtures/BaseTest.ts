@@ -4,6 +4,7 @@ import { FlightsPage } from '../pages/FlightsPage';
 import { Headers } from '../pages/Headers';
 
 type AppFixtures = {
+  navigateToCheapFlightsPage: void;
   flightSearchPage: FlightSearchPage;
   flightsPage: FlightsPage;
   headers: Headers;
@@ -11,10 +12,10 @@ type AppFixtures = {
 
 // Extend the base to include app fixtures
 export const test = base.extend<AppFixtures>({
-  page: async ({ page, baseURL }, use) => {
+  navigateToCheapFlightsPage: [async ({ page, baseURL }, use) => {
     await page.goto(baseURL || '/'); 
-    await use(page); 
-  },
+    await use(); 
+  }, { auto: true }],
 
   headers: async ({ page }, use) => {
     await use(new Headers(page));
