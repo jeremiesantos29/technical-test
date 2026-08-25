@@ -2,38 +2,25 @@ import { Page, Locator, expect } from '@playwright/test';
 import { BasePage } from './BasePage'
 
 export class FlightsPage extends BasePage {
-  readonly originInput: Locator;
-  readonly originList: Locator;
-  readonly originRemoveListButton: Locator;
-  readonly originSearchResults: Locator;
-  readonly originAirportCode: Locator;
-  readonly destinationInput: Locator;
-  readonly destinationSearchResults: Locator;
-  readonly destinationAirportCode: Locator;
-
-  readonly departureDateButton: Locator;
-  readonly returnDateButton: Locator;
-  readonly searchButton: Locator;
-
-  readonly flightSearchDialogMessage: Locator;
   
   constructor(page: Page) {
     super(page);
-    this.originInput = page.locator('//input[@aria-label="Origin location"]');
-    this.originList = page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]');
-    this.originRemoveListButton = page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]//div[@aria-label="Remove value"]');
-    this.originSearchResults = page.locator('#flight-origin-smarty-input-list > li');
-    this.originAirportCode = page.locator('#flight-origin-smarty-input-list > li span[class*="airport-code"]');
-    this.destinationInput = page.locator('//input[@aria-label="Destination location"]');
-    this.destinationSearchResults = page.locator('#flight-destination-smarty-input-list > li');
-    this.destinationAirportCode = page.locator('#flight-destination-smarty-input-list > li span[class*="airport-code"]');
-
-    this.departureDateButton = page.getByRole('button', { name: 'Departure date' });
-    this.returnDateButton = page.getByRole('button', { name: 'Return date' });
-    this.searchButton = page.locator('//button[@aria-label="Search"]');
-
-    this.flightSearchDialogMessage = page.locator('div[role="dialog"] div[class*="content"] ol');
   }
+
+  readonly originInput = this.page.locator('//input[@aria-label="Origin location"]');
+  readonly originList = this.page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]');
+  readonly originRemoveListButton = this.page.locator('//input[@aria-label="Origin location"]/..//div[@role="listitem"]//div[@aria-label="Remove value"]');
+  readonly originSearchResults = this.page.locator('#flight-origin-smarty-input-list > li');
+  readonly originAirportCode = this.page.locator('#flight-origin-smarty-input-list > li span[class*="airport-code"]');
+  readonly destinationInput = this.page.locator('//input[@aria-label="Destination location"]');
+  readonly destinationSearchResults = this.page.locator('#flight-destination-smarty-input-list > li');
+  readonly destinationAirportCode = this.page.locator('#flight-destination-smarty-input-list > li span[class*="airport-code"]');
+
+  readonly departureDateButton = this.page.getByRole('button', { name: 'Departure date' });
+  readonly returnDateButton = this.page.getByRole('button', { name: 'Return date' });
+  readonly searchButton = this.page.locator('//button[@aria-label="Search"]');
+
+  readonly flightSearchDialogMessage = this.page.locator('div[role="dialog"] div[class*="content"] ol');
 
   async removeFlightOrigin() {
     while (await this.originRemoveListButton.count() > 0) {
