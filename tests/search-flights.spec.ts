@@ -27,7 +27,7 @@ test.describe('Search Flights', () => {
 
     // Click Search Button and Switch to the New Tab if needed
     await flightsPage.searchButton.click();
-    await flightSearchPage.switchToLatestTab();
+    // await flightSearchPage.switchToLatestTab();
 
     // Verify Flight Search Result
     await flightSearchPage.verifyFlightOrigin(flightOrigin);
