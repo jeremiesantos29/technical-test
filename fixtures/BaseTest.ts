@@ -14,7 +14,7 @@ type AppFixtures = {
 export const test = base.extend<AppFixtures>({
   navigateToCheapFlightsPage: [async ({ page, baseURL }, use) => {
     await page.goto(baseURL || '/'); 
-    await use(); 
+    await use(undefined); 
   }, { auto: true }],
 
   headers: async ({ page }, use) => {

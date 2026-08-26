@@ -7,7 +7,7 @@ export class FlightSearchPage extends BasePage {
     super(page);
   }
 
-  readonly flightOriginValue = this.page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight origin input"]//div[contains(@class,"item-value")]');;
+  readonly flightOriginValue = this.page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight origin input"]//div[contains(@class,"item-value")]');
   readonly flightDestinationValue = this.page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight destination input"]//div[contains(@class,"item-value")]');
 
   async verifyFlightOrigin(flightOrigin: string) {
