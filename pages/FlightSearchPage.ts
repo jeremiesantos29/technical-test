@@ -1,15 +1,14 @@
 import { Page, Locator, expect } from '@playwright/test';
-import { BasePage } from './BasePage.js';
+import { BasePage } from './BasePage';
 
 export class FlightSearchPage extends BasePage {
-  readonly flightOriginValue: Locator;
-  readonly flightDestinationValue: Locator;
-  
+
   constructor(page: Page) {
     super(page);
-    this.flightOriginValue = page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight origin input"]//div[contains(@class,"item-value")]');
-    this.flightDestinationValue = page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight destination input"]//div[contains(@class,"item-value")]');
   }
+
+  readonly flightOriginValue = this.page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight origin input"]//div[contains(@class,"item-value")]');
+  readonly flightDestinationValue = this.page.locator('//div[@aria-hidden="false"]//div[@aria-label="Flight destination input"]//div[contains(@class,"item-value")]');
 
   async verifyFlightOrigin(flightOrigin: string) {
     await expect(this.flightOriginValue).toContainText(flightOrigin);

@@ -1,19 +1,12 @@
-import { test, expect } from '@playwright/test';
-import { Headers } from '../pages/Headers.js';
+import { test, expect } from '../fixtures/BaseTest';
 
 test.describe('Cheapflights Homepage Header Validation', () => {
-  let headers: Headers;
 
-  test.beforeEach(async ({ page }) => {
-    headers = new Headers(page);
-    await headers.navigateToCheapFlights();
-  });
-
-  test('Validate website logo is visible', async () => {
+  test('Validate website logo is visible', async ({ headers }) => {
     await expect(headers.cheapFlightsLogo).toBeVisible();
   });
 
-  test('Validate Sign-In button is visible', async () => {
+  test('Validate Sign-In button is visible', async ({ headers }) => {
     await expect(headers.signInButton).toBeVisible();
   });
 });

@@ -1,16 +1,8 @@
-import { test } from '@playwright/test';
-import { FlightsPage } from '../pages/FlightsPage.js';
-import { FlightSearchPage } from '../pages/FlightSearchPage.js';
+import { test, expect } from '../fixtures/BaseTest';
 
 test.describe('Search Flights', () => {
-  let flightsPage: FlightsPage;
 
-  test.beforeEach(async ({ page, context }) => {
-    flightsPage = new FlightsPage(page);
-    await flightsPage.navigateToCheapFlights();
-  });
-
-  test('Validate required fields', async () => {
+  test('Validate required fields', async ({ flightsPage }) => {
     await flightsPage.removeFlightOrigin();
     await flightsPage.searchButton.click();
     await flightsPage.verifyFlightSearchDialogMessage(`Please enter a 'From' airport.`);
@@ -19,7 +11,7 @@ test.describe('Search Flights', () => {
     await flightsPage.verifyFlightSearchDialogMessage(`Please enter a valid 'Return' date.`);
   });
   
-  test('Validate successful search flight from Cebu to Singapore', async () => {
+  test('Validate successful search flight from Cebu to Singapore', async ({ flightsPage, flightSearchPage }) => {
     const flightOrigin = 'Cebu';
     const flightDestination = 'Singapore';
 
@@ -33,17 +25,11 @@ test.describe('Search Flights', () => {
     // Select Departure and Return Dates
     await flightsPage.selectDepartureAndReturnDate();
 
-    const flightSearchTab = await flightsPage.clickSearchButton();
-    // const [flightSearchTab] = await Promise.all([
-    //   context.waitForEvent('page'),
-    //   flightsPage.searchButton.click(),
-    // ])
-
-    // await flightSearchTab.waitForLoadState();
-    // await flightSearchTab.bringToFront();
+    // Click Search Button and Switch to the New Tab if needed
+    await flightsPage.searchButton.click();
+    // await flightSearchPage.switchToLatestTab();
 
     // Verify Flight Search Result
-    const flightSearchPage = new FlightSearchPage(flightSearchTab);
     await flightSearchPage.verifyFlightOrigin(flightOrigin);
     await flightSearchPage.verifyFlightDestination(flightDestination);
     await flightSearchPage.verifyFlightOriginSearchResult(flightOrigin, originAirportCode);
